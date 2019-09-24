@@ -39,7 +39,7 @@ class Players extends Controller
      */
     public function show($id)
     {
-        //
+        return Player::find($id);
     }
 
     /**
@@ -51,7 +51,11 @@ class Players extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $player = Player::find($id); // find the player with the given id
+        $data = $request->all(); // returns an array of the data the user submitted
+
+        $player->fill($data)->save(); // updates the player using the fill method and then saves it to the db
+        return $player; // return updated version of player
     }
 
     /**
@@ -62,6 +66,10 @@ class Players extends Controller
      */
     public function destroy($id)
     {
-        //
+        $player= Player::find($id); // find the player object with the given id
+
+        $player->delete();
+
+        return reponse(null, 204); // return 204 code as there is no content in the repsonse    
     }
 }
