@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Player;
 use App\Http\Resources\PlayerResource;
+use App\Http\Requests\PlayerRequest;
 
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class Players extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) // Request object represents the request the user made
+    public function store(PlayerRequest $request) // Request object represents the request the user made
     {
         
         $data = $request->all(); // returns an array of the data the user submitted
@@ -50,7 +51,7 @@ class Players extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PlayerRequest $request, $id)
     {
         $player = Player::find($id); // find the player with the given id
         $data = $request->all(); // returns an array of the data the user submitted
